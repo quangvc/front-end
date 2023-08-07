@@ -1,0 +1,31 @@
+<div class="mb-3">
+  <button nz-button [nzSize]="'large'" nzType="primary" (click)="addBanner()" >{{'button.add_new' | translate}}</button>
+</div>
+<nz-table #basicTable [nzData]="banners">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>{{'banners.image' | translate}}</th>
+      <th>{{'status' | translate}}</th>
+      <th>{{'action' | translate}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td><img [src]="'http://127.0.0.1:8000/Images/banners/'+data.image" width="100" alt=""></td>
+      <td><nz-switch [(ngModel)]="data.status" (ngModelChange)="confirmChangeStatus($event,data)"></nz-switch></td>
+      <td>
+        <button nz-button nzType="primary" [nzSize]="'large'" nzShape="circle" (click)="showConfirmDelete(data.id)" nzDanger><span nz-icon nzType="delete" nzTheme="outline"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<q-image
+  *ngIf="displayMultipleImage"
+  [displayMultipleImage]="displayMultipleImage"
+  [banner]="banner"
+  (cancelModal)="submitForm($event)"
+></q-image>
+

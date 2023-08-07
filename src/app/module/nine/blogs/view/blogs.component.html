@@ -1,0 +1,58 @@
+<div class="mb-3">
+  <button nz-button [nzSize]="'large'" nzType="primary" (click)="addBlog()" >{{'button.add_new' | translate}}</button>
+</div>
+<nz-table #basicTable [nzData]="blogs">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>{{'blog.title' | translate}}</th>
+      <th>{{'blog.image' | translate}}</th>
+      <th>{{'blog.user_id' | translate}}</th>
+      <th>{{'blog.slug' | translate}}</th>
+      <th>{{'status' | translate}}</th>
+      <th>{{'action' | translate}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ data.title }}</td>
+      <td>
+        <img nz-image width="100px" height="100px"
+          [nzSrc]="'http://127.0.0.1:8000/Images/blog/'+data.image"
+          alt=""
+        />
+      </td>
+      <td>{{ data.user_name }}</td>
+      <td>{{ data.slug }}</td>
+      <td><nz-switch [(ngModel)]="data.active" (ngModelChange)="confirmChangeStatus($event,data)"></nz-switch></td>
+      <td>
+        <q-menu
+          [model]="menus"
+          (buttonItem)="dropdownItemsButton(data)">
+        </q-menu>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<create-update-blog
+  *ngIf="displayCreateUpdateBlog"
+  [displayCreateUpdateBlog]="displayCreateUpdateBlog"
+  [blogId]="blogId"
+  (closeModal)="cancel($event)"
+></create-update-blog>
+
+<view-post
+  *ngIf="displayViewPost"
+  [displayViewPost]="displayViewPost"
+  [blogId]="blogId"
+  (closeModal)="cancel($event)"
+></view-post>
+
+<comments-blog
+  *ngIf="displayComment"
+  [displayComment]="displayComment"
+  [blogId]="blogId"
+  (closeModal)="cancel($event)"
+></comments-blog>

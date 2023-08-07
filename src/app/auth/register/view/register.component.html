@@ -1,0 +1,53 @@
+<div class="card mid">
+      <h3>{{'auth.register' | translate}}</h3><br>
+      <form nz-form [formGroup]="formRegister" class="login-form" (ngSubmit)="save()">
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="{{'auth.name' | translate}}!">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="name" placeholder="{{'auth.name' | translate}}" />
+            </nz-input-group>
+            <error-msg [profileForm]="formRegister" key="name" check="required" msg="Vui lòng không để trống."></error-msg>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="{{'auth.email' | translate}}!">
+            <nz-input-group nzPrefixIcon="mail">
+              <input type="email" nz-input formControlName="email" placeholder="{{'auth.email' | translate}}" />
+            </nz-input-group>
+            <error-msg [profileForm]="formRegister" key="email" check="required" msg="Vui lòng không để trống."></error-msg>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="{{'auth.phone_number' | translate}}!">
+            <nz-input-group nzPrefixIcon="phone">
+              <input type="text" nz-input formControlName="phone_number" placeholder="{{'auth.phone_number' | translate}}" />
+            </nz-input-group>
+            <error-msg [profileForm]="formRegister" key="phone_number" check="required" msg="Vui lòng không để trống."></error-msg>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="{{'auth.password' | translate}}!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="{{'auth.password' | translate}}" />
+            </nz-input-group>
+            <error-msg [profileForm]="formRegister" key="password" check="required" msg="Vui lòng không để trống."></error-msg>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="{{'auth.password_confirm' | translate}}!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password_confirmation" placeholder="{{'auth.password_confirm' | translate}}" />
+            </nz-input-group>
+            <error-msg [profileForm]="formRegister" key="password_confirmation" check="required" msg="Vui lòng không để trống."></error-msg>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'auth.register' | translate}}</button>
+      </form>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="linkToLogin()" >{{'auth.login' | translate}} ngay!</button>
+  </div>
